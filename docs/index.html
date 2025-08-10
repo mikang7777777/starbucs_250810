@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+
+<!-- 모바일에 맞는 디자인으로 변경 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>스타벅스 모작</title>
+
+ <!-- lodash 불러오기 -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+
+<!-- 제이쿼리 불러오기 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- 테일윈드 불러오기 -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<!-- 스와이퍼 불러오기 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- 공통 js 연결 -->
+<script defer src="script/script.js"></script>
+
+<!-- 공통 css 연결 -->
+<link rel="stylesheet" href="style/style.css" />
+</head>
+  
+<body>
+
+<div class="site-wrap">
+	<!-- 탑바 구현 시작	-->
+	<header class="top-bar">
+		<div class="top-bar__container flex">
+			<div class="top-bar-left flex items-center">
+				<div class="logo-box">
+					<a href="#" class="logo"></a>
+				</div>
+			</div>
+			<div class="top-bar-right flex-grow flex flex-col">
+				<!-- 				nav.util-nav>ul.util-nav-list>li.util-nav-item*4>a.util-nav-link[href="#"]{메뉴텍스트} -->
+				<nav class="util-nav flex justify-end pt-3 pr-14">
+					<ul class="util-nav-list flex items-center">
+						<li class="util-nav-item">
+							<a href="#" class="util-nav-link">Sign In</a>
+						</li>
+						<li class="util-nav-item">
+							<a href="#" class="util-nav-link">My Starbucks</a>
+						</li>
+						<li class="util-nav-item">
+							<a href="#" class="util-nav-link">Customer Service & Ideas</a>
+						</li>
+						<li class="util-nav-item">
+							<a href="#" class="util-nav-link">Find a Store</a>
+						</li>
+					</ul>
+					<div class="search-btn-box">
+						<button class="search-btn">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</div>
+				</nav>
+				<nav class="top-bar__depth1-menu flex justify-end flex-grow">
+					<!-- ul.flex.depth1-list>li.depth1-list-item*7>a.depth1-list-link[href="#"]{1차메뉴아이템}+div.mega-menu>div.mega-menu-inner>ul.flex.depth2-list>li.depth2-list-item*5>a.depth2-list-link[href="#"]{2차메뉴아이템}+ul.depth3-list>li.depth3-list-item*5>a.depth3-list-link[href="#"]{3차메뉴아이템} -->
+					<ul class="flex depth1-list">
+						<li class="depth1-list-item">
+							<a href="#" class="depth1-list-link">COFFEE</a>
+							<div class="mega-menu">
+								<div class="mega-menu-inner">
+									<ul class="flex depth2-list">
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">커피</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">스타벅스 원두</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">스타벅스 비아</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">스타벅스 오리가미</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">스타벅스앳홈 by 캡슐</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">나와 어울리는 커피</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">커피 이야기</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">농장에서 우리의 손으로</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">최상의 아라비카 원두</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">스타벅스 로스트 스펙트럼</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">스타벅스 디카페인</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">스타벅스 리저브</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">RESERVE MAGAZINE</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">에스프레소 음료</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">도피오라떼모카</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">에스프레소 마키아또</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">아메리카노</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">마키아또</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">카푸치노</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">라떼</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">모카</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">최상의 커피를 즐기는 법</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">커피 프레스</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">푸어 오버</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">아이스 푸어 오버</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">커피 메이커</a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li class="depth1-list-item">
+							<a href="#" class="depth1-list-link">MENU</a>
+							<div class="mega-menu">
+								<div class="mega-menu-inner">
+									<ul class="flex depth2-list">
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li class="depth1-list-item">
+							<a href="#" class="depth1-list-link">STORE</a>
+							<div class="mega-menu">
+								<div class="mega-menu-inner">
+									<ul class="flex depth2-list">
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li class="depth1-list-item">
+							<a href="#" class="depth1-list-link">RESPONSIBILITY</a>
+							<div class="mega-menu">
+								<div class="mega-menu-inner">
+									<ul class="flex depth2-list">
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li class="depth1-list-item">
+							<a href="#" class="depth1-list-link">STARBUCKS REWARDS</a>
+							<div class="mega-menu">
+								<div class="mega-menu-inner">
+									<ul class="flex depth2-list">
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li class="depth1-list-item">
+							<a href="#" class="depth1-list-link">CORPORATE SALES</a>
+							<div class="mega-menu">
+								<div class="mega-menu-inner">
+									<ul class="flex depth2-list">
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li class="depth1-list-item">
+							<a href="#" class="depth1-list-link">WHAT'S NEW</a>
+							<div class="mega-menu">
+								<div class="mega-menu-inner">
+									<ul class="flex depth2-list">
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+										<li class="depth2-list-item">
+											<a href="#" class="depth2-list-link">2차메뉴아이템</a>
+											<ul class="depth3-list">
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+												<li class="depth3-list-item"><a href="#" class="depth3-list-link">3차메뉴아이템</a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</nav>
+				<nav class="mobile-nav">
+					<ul class="flex h-full items-center justify-end gap-x-7">
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-user"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-location-dot"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-bars"></i>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+	<!-- 탑바 구현 끝 -->
+
+	<main class="content-wrap">
+		<!-- section-visual-banner 구현 시작 -->
+		<section class="section-visual-banner">
+			<div class="visual-banner__inner h-full relative">
+				<div class="visual-banner-slogan">
+					<img src="https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_top_slogan_250409.png" alt="pc-slogan">
+					<img src="https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_top_slogan_mo_250409.png" alt="mo-slogan">
+				</div>
+				<div class="visual-banner-btn">
+					<a href="#" class="banner-btn-link">
+						자세히 보기
+					</a>
+				</div>
+				<div class="visual-banner-season-drink">
+					<div class="season-drink season-drink-01">
+						<img src="https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_top_drink01_250409.png" alt="pc-drink-01">
+						<img src="https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_top_drink01_mo_250409.png" alt="mo-drink-01">
+					</div>
+					<div class="season-drink season-drink-02">
+						<img src="https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_top_drink02_250409.png" alt="pc-drink-02">
+						<img src="https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_top_drink02_mo_250409.png" alt="mo-drink-02">
+					</div>
+					<div class="season-drink season-drink-03">
+						<img src="https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_top_drink03_250409.png" alt="pc-drink-03">
+						<img src="https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_top_drink03_mo_250409.png" alt="mo-drink-03">
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- section-visual-banner 구현 끝 -->
+		<!-- 공지사항 배너 구현 시작 -->
+		<section class="notice-banner">
+			<div class="notice-left">
+				<div class="left-content flex h-full items-center">
+					<div class="notice-inner">
+						<h2 class="notice-title">
+							<span class="notice-text">공지사항</span>
+							<span class="notice-icon"></span>
+						</h2>
+						<div class="notice-swiper-wrap swiper">
+							<ul class="notice-swiper-inner swiper-wrapper">
+								<li class="swiper-slide">
+									<a href="#">시스템 개선 및 서비스 점검 안내</a>
+								</li>
+								<li class="swiper-slide">
+									<a href="#">서울평가정보 시스템 점검으로 인한 본인인증 서비스 일시 중단 안내</a>
+								</li>
+								<li class="swiper-slide">
+									<a href="#">Buddy Pass 서비스 이용 개정 안내</a>
+								</li>
+								<li class="swiper-slide">
+									<a href="#">딜리버스 예약 서비스 중단 안내</a>
+								</li>
+							</ul>
+						</div>
+						<div class="notice-plus-btn">
+							<span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="notice-right">
+				<div class="right-content flex h-full items-center">
+					<div class="promotion-inner">
+						<h2 class="promotion-title">스타벅스 프로모션</h2>
+						<div class="promotion-btn"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- 공지사항 배너 구현 끝 -->
+		<!-- 스타벅스 리워드 배너 구현 시작 -->
+		<section class="rewards-banner">
+			<div class="rewards-banner__inner flex gap-x-10">
+				<div class="rewards-logo">
+					<img src="https://image.istarbucks.co.kr/common/img/main/rewards-logo.png" alt="스타벅스 리워드 로고">
+				</div>
+				<div class="rewards-contents text-white flex flex-col">
+					<div class="info-content flex">
+						<div class="info-content-inner flex-grow">
+							<h2 class="reward-title">
+								스타벅스만의 특별한 혜택,
+								<br class="mobile-br">
+								<strong>스타벅스 리워드</strong>
+							</h2>
+							<p class="info-content-text">
+								<strong>스타벅스 회원이세요?</strong>
+								로그인을 통해
+								<br class="mobile-br">
+								나만의 리워드를 확인해보세요.
+								<br>
+								<strong>
+									스타벅스 회원이 아니세요?
+								</strong>
+								<br class="mobile-br">
+								가입을 통해 리워드 혜택을 즐기세요.
+							</p>
+						</div>
+						<div class="reward-btn-group flex items-end gap-x-3">
+							<a href="#">회원 가입</a>
+							<a href="#">로그인</a>
+						</div>
+					</div>
+					<div class="gift-content flex-grow flex items-end">
+						<div class="gift-content-inner flex w-full">
+							<div class="gift-content-text flex-grow">
+								<p>
+									회원 가입 후, 스타벅스 모바일 카드를
+									<br class="mobile-br">
+									<strong>
+										"나에게 선물하기"로 구매하시고,
+										편리하게 등록하세요!
+									</strong>
+									<br>
+									카드를 등록하여 스타벅스 리워드 회원이 되신 후,
+									<br class="mobile-br">
+									첫 구매를 하시면 무료 음료쿠폰을 드립니다!
+								</p>
+							</div>
+							<div class="gift-btn self-end">
+								<a href="#">스타벅스 모바일 카드 선물하기</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- 스타벅스 리워드 배너 구현 끝 -->
+
+		<!-- section-bean-banner 구현 시작 -->
+		<section class="section-bean-banner">
+			<div class="season-bean__inner h-full relative">
+				<div class="season-bean-img-box">
+					<img src="https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_promotion_beans.png" alt="스프링 시즌 블렌드 pc">
+					<img src="https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_promotion_beans_mo.png" alt="스프링 시즌 블렌드 mo">
+				</div>
+				<div class="season-bean-text-box">
+					<img src="https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_promotion_txt.png" alt="스프링 시즌 블렌드 250g pc">
+					<img src="https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_promotion_txt_mo.png" alt="스프링 시즌 블렌드 250g mo">
+
+					<div class="season-bean-btn">
+						<a href="#" class="banner-btn-link">
+							자세히 보기
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- section-bean-banner 구현 끝 -->
+
+		<!-- reverve 배너 구현 시작 -->
+		<section class="reverve-banner">
+			<div class="reverve-banner__inner h-full mx-auto relative">
+				<div class="reverve-title">
+					<img src="https://image.istarbucks.co.kr/upload/common/img/main/2025/250305_pc_reserve_title.png" alt="COSTA RICA TICA LINDA" class="reverve-pc-img">
+				</div>
+				<div class="reserve-btn">
+					<a href="#" class="banner-btn-link">
+						자세히 보기
+					</a>
+				</div>
+				<div class="reserve-visual">
+					<img src="https://image.istarbucks.co.kr/upload/common/img/main/2025/250305_pc_reserve_coffee.png" alt="COSTA RICA 커피 이미지">
+				</div>
+			</div>
+		</section>
+		<!-- reverve 배너 구현 끝 -->
+
+		<!-- favorite 배너 구현 시작 -->
+		<section class="fav-banner">
+			<div class="fav-banner__inner">
+				<div class="fav-banner-text-box">
+					<div class="prod-text-01"></div>
+					<div class="prod-text-02"></div>
+					<div class="fav-banner-btn">
+						<a href="#" class="banner-btn-link">
+							자세히 보기
+						</a>
+					</div>
+				</div>
+				<div class="fav-banner-visual"></div>
+			</div>
+		</section>
+		<!-- favorite 배너 구현 끝 -->
+
+		<!-- 리저브 매거진 배너 구현 시작	-->
+		<section class="reserve-mag-banner">
+			<div class="mag-banner__inner">
+				<div class="reserve-mag-title">
+					<img src="https://image.istarbucks.co.kr/upload/common/img/etc/reserve_text_pc.png" alt="리저브 매거진에서 일상 속 특별함을 만나보세요.">
+				</div>
+				<div class="reserve-mag-visual">
+					<img src="https://image.istarbucks.co.kr/upload/common/img/etc/reserve_visual_pc.png" alt="리저브 비주얼 이미지">
+				</div>
+				<div class="reserve-mag-btn">
+					<a href="#" class="banner-btn-link">
+						자세히 보기
+					</a>
+				</div>
+			</div>
+		</section>
+		<!-- 리저브 매거진 배너 구현 끝 -->
+
+		<!-- 스토어 배너 구현 시작 -->
+		<section class="store-banner">
+			<div class="store-banner__inner">
+				<div class="store-item-img-01"></div>
+				<div class="store-item-img-02"></div>
+				<div class="store-item-img-03"></div>
+				<div class="store-item-img-04"></div>
+				<div class="store-text-01"></div>
+				<div class="store-text-02"></div>
+				<div class="store-banner-btn">
+					<a href="#" class="banner-btn-link">
+						매장 찾기
+					</a>
+				</div>
+			</div>
+		</section>
+		<!-- 스토어 배너 구현 끝 -->
+	</main>
+</div>
+
+</body>
+</html>

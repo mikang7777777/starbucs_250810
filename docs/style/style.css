@@ -1,0 +1,1237 @@
+@font-face {
+	font-family: "Pretendard-Regular";
+	src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+		format("woff");
+	font-weight: 400;
+	font-style: normal;
+}
+
+html {
+	> body {
+		font-family: "Pretendard-Regular";
+	}
+}
+
+/* 라이브러리 */
+
+/* 커스텀 */
+@mixin common-container() {
+	max-width: 1100px;
+	margin-inline: auto;
+}
+
+/* 탑바 구현 시작 */
+.top-bar {
+	background-color: #f6f5ef;
+	border-bottom: 1px solid #e5e5e5;
+	border-top: 2px solid #000;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	padding-inline: clamp(10px, 2vw, 20px);
+	z-index: 1000;
+
+	.top-bar__container {
+		@include common-container;
+		height: clamp(70px, 9vw, 120px);
+	}
+
+	.logo {
+		display: block;
+		width: clamp(45px, 8vw, 75px);
+		height: clamp(45px, 8vw, 75px);
+		background-image: url(https://www.starbucks.co.kr/common/img/common/logo.png);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	}
+
+	.util-nav {
+		@media (960px >= width) {
+			display: none;
+		}
+
+		&-item:not(:last-child) {
+			.util-nav-link {
+				&::after {
+					content: "";
+					position: absolute;
+					background-color: #555;
+					opacity: 0.3;
+					width: 1px;
+					height: 10px;
+					right: 0;
+					top: 50%;
+					transform: translateY(-50%);
+				}
+			}
+		}
+
+		&-link {
+			display: block;
+			color: #555;
+			font-size: 13px;
+			padding-inline: 0.8rem;
+			position: relative;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.search-btn {
+		width: 34px;
+		height: 34px;
+		background-color: #fff;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+
+	.mobile-nav {
+		@media (width > 960px) {
+			display: none;
+		}
+
+		height: 100%;
+
+		i {
+			color: #55443a;
+			font-size: 2.5rem;
+		}
+	}
+}
+
+.top-bar__depth1-menu {
+	@media (960px >= width) {
+		display: none;
+	}
+
+	[class$="list-item"] {
+		a {
+			white-space: nowrap;
+		}
+
+		&:hover > a {
+			text-decoration: underline;
+		}
+	}
+
+	.depth1-list-item {
+		&:hover {
+			.depth1-list-link {
+				background-color: #2c2a29;
+				color: #669900;
+			}
+
+			.mega-menu {
+				max-height: 300px;
+				visibility: visible;
+			}
+		}
+	}
+
+	.depth1-list-link {
+		display: block;
+		padding-top: 10px;
+		padding-inline: 1.1rem;
+		height: 100%;
+		font-size: 15px;
+		color: #333;
+	}
+
+	.mega-menu {
+		max-height: 0;
+		overflow: hidden;
+		visibility: hidden;
+		position: absolute;
+		left: 0;
+		width: 100%;
+		background-color: #2c2a29;
+		transition: max-height 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+		.mega-menu-inner {
+			@include common-container;
+		}
+
+		.depth2-list {
+			padding: 0.8rem 0 1rem 0;
+		}
+
+		.depth2-list-item {
+			flex-grow: 1;
+
+			.depth2-list-link {
+				display: block;
+				padding-block: 0.6rem;
+				color: #fff;
+			}
+		}
+
+		.depth3-list-item {
+			.depth3-list-link {
+				color: #999;
+				font-size: 14px;
+			}
+		}
+	}
+}
+
+/* 탑바 구현 끝 */
+
+.content-wrap {
+	padding-top: clamp(70px, 9vw, 120px);
+}
+
+$breakpoints: (
+	"mobile": 640px,
+	"mobileAndTablet": 960px,
+	"tablet": 1020px,
+	"pc": 1021px
+);
+
+@mixin responsive($type) {
+	$size: map-get($breakpoints, $type);
+
+	@if $type == "pc" {
+		// 화면의 너비가 1201px 이상인 경우
+		@media (width >= #{$size}) {
+			@content;
+		}
+	} @else if $type == "tablet" {
+		// 화면의 너비가 1020px 이하인 경우
+		@media (#{$size} >= width) {
+			@content;
+		}
+	} @else if $type == "mobileAndTablet" {
+		// 화면의 너비가 960px 이하인 경우
+		@media (#{$size} >= width) {
+			@content;
+		}
+	} @else if $type == "mobile" {
+		// 화면의 너비가 640px 이하인 경우
+		@media (#{$size} >= width) {
+			@content;
+		}
+	}
+}
+
+@mixin common-banner-btn($color, $hover-color: #fff) {
+	position: absolute;
+	width: 25.25%;
+	z-index: 10;
+	top: 64.241%;
+	left: 10.7%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	@include responsive(mobileAndTablet) {
+		top: 87.661%;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 100%;
+	}
+
+	a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 2.5rem;
+		font-size: 15px;
+		width: 29%;
+		min-width: 125px;
+		color: $color;
+		border: 3px solid $color;
+		border-radius: 4px;
+		transition: background-color 0.7s, color 0.7s, border-color 0.7s;
+
+		@include responsive(mobileAndTablet) {
+			width: 36%;
+			font-size: 25px;
+			font-weight: bold;
+			border-radius: 3px;
+			height: 5rem;
+		}
+
+		&:hover {
+			background-color: $color;
+			color: $hover-color;
+			text-decoration: underline;
+		}
+	}
+}
+
+/* section-visual-banner 구현 시작 */
+.section-visual-banner {
+	height: 32vw;
+	background-image: url("https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_top_bg_250409.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+
+	@include responsive(mobileAndTablet) {
+		background-image: url(https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_top_bg_mo_250409.jpg);
+		height: 268.594vw;
+		background-position: center top;
+		overflow: hidden;
+	}
+
+	.visual-banner-slogan {
+		position: absolute;
+		width: 25.25%;
+		left: 10.7%;
+		top: 30.031%;
+
+		@include responsive(mobileAndTablet) {
+			width: 74.688%;
+			top: 4.887%;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		img {
+			width: 100%;
+			display: block;
+
+			&:first-child {
+				@include responsive(tablet) {
+					display: none;
+				}
+			}
+
+			&:last-child {
+				@include responsive(pc) {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.visual-banner-btn {
+		@include common-banner-btn(#0092c8);
+	}
+}
+
+.visual-banner-season-drink {
+	.season-drink {
+		position: absolute;
+
+		img {
+			width: 100%;
+
+			&:first-child {
+				@include responsive(mobileAndTablet) {
+					display: none;
+				}
+			}
+
+			&:last-child {
+				@media (width >= 960px) {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.season-drink-01 {
+		z-index: 9;
+		top: 20.123%;
+		left: 54.7%;
+		width: 14.05%;
+
+		@include responsive(mobileAndTablet) {
+			top: 19.663%;
+			left: 14.687%;
+			width: 69.844%;
+			max-width: 100%;
+		}
+	}
+
+	.season-drink-02 {
+		z-index: 8;
+		top: 18.111%;
+		left: 43.15%;
+		width: 14.05%;
+
+		@include responsive(mobileAndTablet) {
+			top: 40.838%;
+			left: 15.781%;
+			width: 88.282%;
+			max-width: 100%;
+		}
+	}
+
+	.season-drink-03 {
+		z-index: 8;
+		top: 19.969%;
+		left: 66.15%;
+		width: 14.05%;
+
+		@include responsive(mobileAndTablet) {
+			top: 62.4205%;
+			left: 14.687%;
+			width: 74.063%;
+			max-width: 100%;
+		}
+	}
+}
+/* section-visual-banner 구현 끝 */
+
+/* 공지사항 배너 구현 시작 */
+.notice-banner {
+	height: 62px;
+	display: flex;
+	width: 100%;
+	white-space: nowrap;
+
+	@include responsive(mobile) {
+		flex-direction: column;
+		height: 220px;
+	}
+
+	.notice-left {
+		background-color: #111;
+		width: 55%;
+		color: #fff;
+		display: flex;
+		justify-content: end;
+
+		@media (1420px >= width) {
+			padding-left: 0.8rem;
+		}
+
+		@include responsive(mobile) {
+			width: 100%;
+			height: 50%;
+		}
+
+		.left-content {
+			width: 730px;
+
+			@include responsive(tablet) {
+				width: 100%;
+			}
+
+			.notice-inner {
+				display: flex;
+				align-items: center;
+				color: #fff;
+				width: 100%;
+				gap: 0 clamp(0.5rem, 2vw, 1.5rem);
+				height: 100%;
+
+				@include responsive(mobile) {
+					justify-content: center;
+				}
+			}
+
+			.notice-title {
+				font-size: 1.3rem;
+
+				.notice-icon {
+					display: block;
+					background: url(https://www.starbucks.co.kr/common/img/common/icon_board_speaker.png)
+						center center no-repeat;
+					background-size: 33px 32px;
+					width: 33px;
+					height: 32px;
+
+					@media (width >= 640px) {
+						display: none;
+					}
+				}
+
+				@include responsive(mobile) {
+					.notice-text {
+						display: none;
+					}
+				}
+			}
+
+			.notice-swiper-wrap {
+				height: 50px;
+
+				.swiper-slide {
+					display: flex;
+					align-items: center;
+
+					a {
+						flex: 1;
+						justify-content: space-evenly;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+				}
+			}
+
+			.notice-swiper-inner {
+				li {
+					&:hover > a {
+						text-decoration: underline;
+					}
+
+					a {
+						display: block;
+					}
+				}
+			}
+
+			.notice-plus-btn {
+				background-image: url(https://www.starbucks.co.kr/common/img/common/btn_notice_plus.png);
+				background-repeat: no-repeat;
+				background-size: 35px;
+				height: 36px;
+				width: 36px;
+				cursor: pointer;
+				padding-right: clamp(3rem, 2vw, 1.5rem);
+			}
+		}
+	}
+
+	.notice-right {
+		background-color: #f6f5ef;
+		width: 45%;
+
+		@include responsive(mobile) {
+			width: 100%;
+			height: 50%;
+		}
+
+		.right-content {
+			width: 550px;
+
+			@include responsive(tablet) {
+				width: 100%;
+			}
+
+			.promotion-inner {
+				height: 100%;
+				width: 100%;
+				display: flex;
+				justify-content: end;
+				align-items: center;
+				gap: 0 clamp(1.8rem, 1.2vw, 5rem);
+
+				@include responsive(mobile) {
+					justify-content: center;
+				}
+
+				.promotion-title {
+					font-size: 1.4rem;
+					font-weight: bold;
+
+					@include responsive(mobile) {
+						font-size: 1.9rem;
+					}
+				}
+
+				.promotion-btn {
+					background-image: url(https://image.istarbucks.co.kr/common/img/common/btn_prom_down.png);
+					background-repeat: no-repeat;
+					background-size: 35px;
+					height: 36px;
+					width: 36px;
+					cursor: pointer;
+					margin-right: clamp(0.3rem, 1.2vw, 4rem);
+				}
+			}
+		}
+	}
+}
+
+/* 공지사항 배너 구현 끝 */
+
+/* 스타벅스 리워드 배너 구현 시작 */
+.rewards-banner {
+	padding-top: 30px;
+	padding-bottom: 40px;
+	background-color: #1e3932;
+
+	@include responsive(tablet) {
+		padding-inline: 25px;
+	}
+
+	.rewards-banner__inner {
+		max-width: 1080px;
+		margin-inline: auto;
+
+		@include responsive(mobile) {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+
+	.rewards-logo {
+		@include responsive(tablet) {
+			width: 35%;
+			margin: 35px 35px 0 35px;
+		}
+
+		@include responsive(mobile) {
+			width: 40%;
+			margin-block: 30px;
+		}
+
+		img {
+			width: 176px;
+
+			@include responsive(tablet) {
+				width: 100%;
+			}
+		}
+	}
+
+	@mixin reward-btn() {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 38px;
+		padding-left: 21.4px;
+		padding-right: 21.4px;
+		font-size: 14px;
+		color: #fff;
+		border-radius: 5px;
+		cursor: pointer;
+		border: 2px solid;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	.rewards-contents {
+		flex-grow: 1;
+
+		@include responsive(tablet) {
+			width: calc(65% - 80px);
+			flex-grow: 0;
+		}
+
+		@include responsive(mobile) {
+			width: 90%;
+		}
+
+		.info-content {
+			padding-bottom: 20px;
+			margin-bottom: 22px;
+			border-bottom: 1px solid #4b615b;
+
+			@include responsive(tablet) {
+				flex-direction: column;
+			}
+
+			@include responsive(mobile) {
+				align-items: center;
+				text-align: center;
+			}
+
+			.info-content-inner {
+				.reward-title {
+					font-size: 26px;
+
+					@include responsive(mobile) {
+						line-height: 1.1;
+					}
+				}
+
+				.info-content-text {
+					font-size: 17px;
+
+					@include responsive(tablet) {
+						margin-block: 12px;
+					}
+				}
+			}
+
+			.reward-btn-group {
+				@include responsive(mobile) {
+					width: 80%;
+				}
+
+				a {
+					@include reward-btn();
+
+					&:first-child {
+						background-color: #00704a;
+						border: 2px solid #00704a;
+					}
+
+					@include responsive(mobile) {
+						width: 50%;
+					}
+				}
+			}
+		}
+
+		.gift-content {
+			.gift-content-inner {
+				@include responsive(tablet) {
+					flex-direction: column;
+					gap: 1.2rem 0;
+				}
+
+				@include responsive(mobile) {
+					align-items: center;
+					text-align: center;
+				}
+			}
+
+			.gift-content-text {
+				font-size: 14px;
+			}
+
+			.gift-btn {
+				width: 193px;
+
+				@include responsive(tablet) {
+					align-self: start;
+				}
+
+				@include responsive(mobile) {
+					align-self: center;
+					width: 80%;
+				}
+
+				a {
+					@include reward-btn();
+					white-space: nowrap;
+				}
+			}
+		}
+	}
+
+	.mobile-br {
+		display: none;
+
+		@include responsive(tablet) {
+			display: block;
+		}
+	}
+}
+/* 스타벅스 리워드 배너 구현 끝 */
+
+/* section-bean-banner 구현 시작 */
+.section-bean-banner {
+	height: 32vw;
+	background-image: url(https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_promotion_bg.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+
+	@media (1200px >= width) {
+		height: 43vw;
+	}
+
+	@include responsive(mobileAndTablet) {
+		background-image: url(https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_promotion_bg_mo.jpg);
+		height: 180.625vw;
+		overflow: hidden;
+	}
+
+	.season-bean__inner {
+		max-width: 1400px;
+		margin-inline: auto;
+
+		@media (1700px > width) {
+			max-width: 1124px;
+		}
+	}
+
+	.season-bean-img-box {
+		position: absolute;
+		z-index: 9;
+		top: 15.917%;
+		left: 28.57%;
+		width: 21.072%;
+
+		@include responsive(mobileAndTablet) {
+			z-index: 10;
+			top: 15.176% !important;
+			left: 0 !important;
+			right: 0 !important;
+			width: 100%;
+		}
+
+		img {
+			width: 100%;
+
+			&:last-child {
+				display: none;
+			}
+
+			@include responsive(mobileAndTablet) {
+				&:first-child {
+					display: none;
+				}
+
+				&:last-child {
+					display: block;
+				}
+			}
+		}
+	}
+
+	.season-bean-text-box {
+		position: absolute;
+		z-index: 9;
+		top: calc(50% + 3px);
+		right: 13.85%;
+		transform: translateY(-50%);
+		width: 36.072%;
+
+		@include responsive(mobileAndTablet) {
+			z-index: 10;
+			top: 58.82% !important;
+			left: 0 !important;
+			right: 0 !important;
+			max-width: 100% !important;
+			width: 100% !important;
+			transform: translateY(0) !important;
+			position: relative;
+		}
+
+		> img {
+			width: 100%;
+
+			&:last-of-type {
+				display: none;
+			}
+
+			@include responsive(mobileAndTablet) {
+				&:first-of-type {
+					display: none;
+				}
+
+				&:last-of-type {
+					display: block;
+				}
+			}
+		}
+
+		.season-bean-btn {
+			@include common-banner-btn(#a32a4e);
+			position: static;
+			margin-top: 3rem;
+
+			@include responsive(mobileAndTablet) {
+				position: absolute;
+				top: 99%;
+			}
+		}
+	}
+}
+/* section-bean-banner 구현 끝 */
+
+/* reverve-banner 구현 시작 */
+.reverve-banner {
+	height: 400px;
+	background: url(https://image.istarbucks.co.kr/upload/common/img/main/2025/250305_pc_reserve_bg.jpg)
+		no-repeat center top;
+	background-size: 100% 400px;
+	overflow: hidden;
+
+	@include responsive(mobileAndTablet) {
+		background-image: url(https://image.istarbucks.co.kr/upload/common/img/main/2025/250305_mo_reserve_bg.jpg);
+		height: 170.1vw;
+		background-size: cover;
+	}
+
+	.reverve-banner__inner {
+		max-width: 1080px;
+	}
+
+	.reverve-title {
+		position: relative;
+		z-index: 10;
+		padding-top: 64px;
+
+		@include responsive(mobileAndTablet) {
+			display: none;
+		}
+	}
+
+	.reserve-btn {
+		@include common-banner-btn(#ba6e36);
+		top: 70%;
+		left: 15%;
+	}
+
+	.reserve-visual {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		padding-right: 50px;
+
+		@include responsive(mobileAndTablet) {
+			display: none;
+		}
+
+		img {
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+}
+/* reverve-banner 구현 끝 */
+
+/* fav-banner 구현 시작 */
+.fav-banner {
+	background: url(https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_pick_bg_250409.jpg)
+		center center fixed no-repeat #45434c;
+	background-size: auto 90%;
+	background-position: bottom;
+	height: 800px;
+	overflow: hidden;
+
+	@include responsive(mobileAndTablet) {
+		background-image: url(https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_pick_bg_mo_250409.jpg);
+		background-size: 100% auto;
+		height: 233.75vw;
+		position: relative;
+		width: 100%;
+	}
+
+	.fav-banner__inner {
+		max-width: 1280px;
+		height: 100%;
+		margin-inline: auto;
+		position: relative;
+
+		@include responsive(mobileAndTablet) {
+			width: 100%;
+		}
+	}
+
+	.fav-banner-text-box {
+		height: 100%;
+		width: 40%;
+		position: relative;
+		left: -9%;
+
+		@include responsive(mobileAndTablet) {
+			width: 100%;
+			left: auto;
+		}
+
+		.prod-text-01 {
+			background: url(https://image.istarbucks.co.kr/upload/common/img/main/2024/2025_january_pick_txt01.png)
+				no-repeat;
+			height: 204px;
+			right: 0;
+			position: absolute;
+			top: 160px;
+			width: 258px;
+			z-index: 7;
+			background-size: 100% auto;
+
+			@include responsive(mobileAndTablet) {
+				background: url(https://image.istarbucks.co.kr/upload/common/img/main/2024/2025_january_pick_txt01_mo.png)
+					no-repeat;
+				top: 64.7%;
+				width: 62.8vw;
+				height: 83px;
+				left: 50%;
+				right: auto;
+				transform: translateX(-50%);
+				background-size: contain;
+				background-position: center;
+			}
+		}
+
+		.prod-text-02 {
+			background: url(https://image.istarbucks.co.kr/upload/common/img/main/2024/2025_january_pick_txt02.png)
+				no-repeat;
+			height: 196px;
+			right: 0;
+			position: absolute;
+			top: 420px;
+			width: 362px;
+			z-index: 7;
+
+			@include responsive(mobileAndTablet) {
+				background: url(https://image.istarbucks.co.kr/upload/common/img/main/2024/2025_january_pick_txt02_mo.png)
+					no-repeat;
+				top: 73%;
+				left: 50%;
+				width: 82.5vw;
+				height: 100%;
+				transform: translateX(-50%);
+				background-size: contain;
+			}
+		}
+
+		.fav-banner-btn {
+			@include common-banner-btn(#fff, #000);
+			left: auto;
+			right: 1%;
+			top: 75%;
+		}
+	}
+
+	.fav-banner-visual {
+		top: 96px;
+		right: -165px;
+		width: clamp(500px, 90vw, 944px);
+		aspect-ratio: 944/608;
+		background-image: url(https://image.istarbucks.co.kr/upload/common/img/main/2025/2025_spring_pick_img_250409.png);
+		position: absolute;
+		background-size: 100%;
+		background-repeat: no-repeat;
+		background-position: center;
+		z-index: 7;
+
+		@media (1400px >= width >= 960px) {
+			width: clamp(500px, 60vw, 794px);
+			top: 50%;
+			right: -1%;
+			transform: translateY(-60%);
+		}
+
+		@include responsive(mobileAndTablet) {
+			left: 50%;
+			transform: translateX(-50%);
+			right: auto;
+			width: clamp(500px, 90vw, 794px);
+		}
+
+		@include responsive(mobile) {
+			width: clamp(350px, 90vw, 794px);
+		}
+	}
+}
+/* fav-banner 구현 끝 */
+
+/* reserve-mag-banner 구현 시작 */
+.reserve-mag-banner {
+	height: 400px;
+	background: url(https://image.istarbucks.co.kr/upload/common/img/main/2021/reserve_bg_pc.png)
+		no-repeat 50% 100%;
+	background-size: auto 353px;
+	overflow: hidden;
+
+	@include responsive(mobileAndTablet) {
+		background: url(https://image.istarbucks.co.kr/upload/common/img/etc/reserve_visual_m.jpg)
+			no-repeat;
+		height: 170vw;
+		background-size: cover;
+	}
+
+	.mag-banner__inner {
+		position: relative;
+		margin-inline: auto;
+		height: 100%;
+		max-width: 1100px;
+
+		@include responsive(mobileAndTablet) {
+			width: 100%;
+		}
+	}
+
+	.reserve-mag-title {
+		position: relative;
+		z-index: 10;
+		padding-top: 135px;
+		padding-left: 55px;
+		width: 100%;
+
+		@include responsive(mobileAndTablet) {
+			display: none;
+		}
+	}
+
+	.reserve-mag-visual {
+		position: absolute;
+		top: 0;
+		right: 50%;
+		margin-right: -483px;
+
+		@include responsive(mobileAndTablet) {
+			display: none;
+		}
+	}
+
+	.reserve-mag-btn {
+		@include common-banner-btn(#000);
+		left: 18.3%;
+
+		@include responsive(mobileAndTablet) {
+			top: 94%;
+			left: 20% !important;
+			transform: translateX(0);
+		}
+
+		> a {
+			height: 2.5rem;
+			font-size: 15px;
+			width: 29%;
+		}
+	}
+}
+/* reserve-mag-banner 구현 끝 */
+
+/* store-banner 구현 시작 */
+.store-banner {
+	background: url(https://www.starbucks.co.kr/common/img/main/store_bg.jpg)
+		no-repeat;
+	background-size: cover;
+	height: 400px;
+	width: 100%;
+	overflow: hidden;
+
+	@include responsive(mobileAndTablet) {
+		height: 750px;
+		background-size: cover;
+	}
+
+	.store-banner__inner {
+		position: relative;
+		height: 100%;
+		max-width: 1280px;
+		margin-inline: auto;
+
+		@include responsive(mobileAndTablet) {
+			width: 100%;
+		}
+
+		.store-item-img-01 {
+			background: url(https://image.istarbucks.co.kr/img/event/2022/221212_main_story_2.png)
+				no-repeat;
+			height: 228px;
+			left: 390px;
+			position: absolute;
+			top: 149px;
+			width: 228px;
+			z-index: 5;
+			background-size: contain;
+
+			@include responsive(mobileAndTablet) {
+				background-size: 100% auto;
+				height: 199px;
+				left: 54%;
+				width: 200px;
+			}
+		}
+
+		.store-item-img-02 {
+			background: url(https://image.istarbucks.co.kr/img/event/2022/221212_main_story_1.png)
+				no-repeat;
+			height: 312px;
+			left: 160px;
+			position: absolute;
+			top: 0;
+			width: 366px;
+			z-index: 4;
+			background-size: contain;
+
+			@include responsive(mobileAndTablet) {
+				background-size: 100% auto;
+				height: 255px;
+				left: 16%;
+				width: 300px;
+			}
+		}
+
+		.store-item-img-03 {
+			background: url(https://www.starbucks.co.kr/common/img/main/store_exp_img03.png)
+				no-repeat;
+			height: 142px;
+			left: 520px;
+			position: absolute;
+			top: -60px;
+			width: 343px;
+			z-index: 4;
+
+			@include responsive(mobileAndTablet) {
+				background-size: 100% auto;
+				height: 115px;
+				left: 14%;
+				top: 240px;
+				width: 280px;
+			}
+		}
+
+		.store-item-img-04 {
+			background: url(https://www.starbucks.co.kr/common/img/main/store_exp_img04.png)
+				no-repeat;
+			height: 102px;
+			position: absolute;
+			right: 30px;
+			top: 298px;
+			width: 230px;
+			z-index: 4;
+
+			@include responsive(mobileAndTablet) {
+				background-size: 100% auto;
+				height: 75px;
+				left: 69%;
+				top: 670px;
+				width: 170px;
+			}
+		}
+
+		.store-text-01 {
+			background: url(https://image.istarbucks.co.kr/img/event/2022/221212_pc_main_story_txt_1.png);
+			height: 54px;
+			position: absolute;
+			right: 162px;
+			top: 100px;
+			width: 374px;
+			z-index: 4;
+
+			@include responsive(mobileAndTablet) {
+				background: url(https://image.istarbucks.co.kr/img/event/2022/221213_m_main_story_txt_1.png);
+				background-size: 100% auto;
+				height: 64px;
+				left: 50%;
+				transform: translateX(-50%);
+				position: absolute;
+				top: 390px;
+				width: 440px;
+				z-index: 4;
+			}
+		}
+
+		.store-text-02 {
+			background: url(https://image.istarbucks.co.kr/img/event/2022/221212_pc_main_story_txt_2.png);
+			height: 92px;
+			position: absolute;
+			right: 168px;
+			top: 168px;
+			width: 366px;
+			z-index: 4;
+
+			@include responsive(mobileAndTablet) {
+				background: url(https://image.istarbucks.co.kr/img/event/2022/221212_m_main_story_txt_2.png);
+				background-size: 100% auto;
+				height: 130px;
+				left: 50%;
+				transform: translateX(-50%);
+				position: absolute;
+				top: 474px;
+				width: 440px;
+				z-index: 4;
+			}
+		}
+
+		.store-banner-btn {
+			@include common-banner-btn(#000);
+			left: auto;
+			transform: translateX(0);
+			top: 73%;
+			right: 314px;
+
+			@include responsive(mobileAndTablet) {
+				> a {
+					height: 2.5rem;
+					font-size: 15px;
+					width: 29%;
+				}
+			}
+		}
+	}
+}
+/* store-banner 구현 끝 */
